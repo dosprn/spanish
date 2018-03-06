@@ -1,0 +1,369 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>DOSPRN 1.85 supported ESC sequences</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META name=Keywords  content="dos printer driver, dos printer, dos usb driver, dos print command, DOS, printers, program, print, printer, USB, programs, LPT, DOS program, software, national, language, internanional" >
+<META name=Description  content="DOSPRN allow to use your old favorite DOS program with new printers independently of their types (yes, and USB also !)" >
+<meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+<BODY background=images/bg2.jpg>
+<DIV align=center>
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=6 width=50% style="max-width:640px" border=0>
+<TR>
+	<TD width=100%>
+	<div style="float:left"><IMG src="images/logo.gif" ALT="DOS USB print under Windows 8, Windows 7, Windows XP, Windows2000, Windows98"> <font size="5"><b>&nbsp;DOSPRN&nbsp;1.85&nbsp;</b></font></div>
+  
+	<table border="2" bgcolor="#C0C0C0" cellpadding="4" cellspacing="4">
+        <tr>
+          <td><a href="http://www.dosprn.com"><img src="images/gb.png" align="center" width="30" height="20" alt="Dos print international support center DOSPRN" border=0></a></td>
+          <td><a href="http://spanish.dosprn.com" id="spanish"><img src="images/es.png" width="30" height="20" alt="Spanish dos print support center" align="center" border="0"></a></td>
+          <td><a href="http://ukrainian.dosprn.com" id="ukrainian"><img src="images/ua.png" width="30" height="20" alt="DOSPRN Ukrainian dos print support center" align="center" border="0"></a></td>
+          <td><a href="http://polska.dosprn.com"><img src="images/pl.png" width="30" height="20" alt="Dosprinter Polish support center" align="center" border="0"></a></td>
+          <td><a href="http://dosprn.co.il"><img src="images/il.png" width="30" height="20" alt="DOSPRN Israel dos usb support center" align="center" border="0"></a></td>
+          <td><a href="http://bkltd.com/dosprn/"><img src="images/bg.png" width="30" height="20" alt="DOSPRN Bulgaria dos print support center" align="center" border="0"></a></td>
+          <td><a href="http://indonesian.dosprn.com"><img src="images/id.png" width="30" height="20" alt="Indonesian DOSPRN support center" align="center" border="0"></a></td>
+          <td><a href="http://dosprn.cz/index.php?doorkey=kontakt"><img src="images/cz.png" width="30" height="20" alt="DOS USB Czech support center" align="center" border="0"></a></td>
+        </tr>
+      </table>
+
+</TD></TR>
+
+<TR>
+	<TD align=middle width="100%" style="line-height:1.5">
+	<HR><font size="+1">
+	<A href="dos-print.htm">Acerca de</A> &nbsp;||&nbsp; <A href="readme.htm">Manual</A> &nbsp;||&nbsp; <A href="news.htm">Novedades</A> &nbsp;||&nbsp; <A href="download.htm">Descargas</A> &nbsp;||&nbsp; <A href="vox.htm">Vox populi</A> &nbsp;||&nbsp; <A href="order.htm">Comprar</A> &nbsp;||&nbsp; <A       href="faq.htm">FAQ</A> &nbsp;||&nbsp; <A href="story.htm">Historia</A> &nbsp;||&nbsp; <A href="mailto:support&#064dosprn.com?Subject=DOSPRN&#032support"> Soporte</A> &nbsp;||&nbsp; <A href="login.htm">Login</A></font><HR>
+</TD></TR>
+<TR>
+	<TD width="100%">
+	<h3>Descripcion de Secuencias</h3>
+	<p>
+	Las secuencias son conjuntos especiales de codigos ASCII que se utilizan para administrar el diseno de informacion que se muestra en un dispositivo de impresion. Por ejemplo, todas las impresoras compatibles con Epson admiten secuencias del estandar ESC-P / ESC-P2 (es decir, secuencias Esc).<br>
+        <br>
+	Las secuencias permiten cambiar el tamano el tono de los simbolos impresos, la densidad de impresion horizontal y vertical, y permiten la impresion de objetos graficos simples.<br>
+        <br>
+	La DOSPRN ahora puede emular docenas de caracteristicas de impresion. Por defecto, DOSPRN admite su propia <a href="#1">paleta de secuencias</a>, pero puede emular algunas de las mas importantes y, a menudo, utiliza los recursos de los estandares <a href="#2">ESC-P2</a> y <a href="#3">HP PCL</a>.
+	</p>
+	<p>
+	La paleta PCL de HP puede ser util si su programa de DOS esta disenado para imprimir en impresoras Hewlett Packard, pero si no tiene una impresora de este tipo o desea ampliar sus funcionalidades.
+	</p>
+	<p>
+	Se esta desarrollando un nuevo meta-lenguaje DOSPRN. Este lenguaje nos permitira describir mejor las distintas secuencias.
+	</p><br>
+</TD></TR>
+<TR>
+	<TD width="100%">
+	<h3>Sintaxis de secuencias</h3>
+	<p>
+	Cada modo de impresion habilitado en DOSPRN corresponde a una o mas secuencias de escape (sinonimos) en cada paleta de secuencias. El lenguaje de las secuencias de DOSPRN tiene algunas caracteristicas distintivas.
+	<ul type="circle">
+	<li>
+	cada codigo ASCII no imprimible se ve como <b><font face="Courier New">[#XX]</font></b>, donde <font face="Courier New"><b>XX</b></font> es un valor de codigo.
+	</li>
+	<li>
+	todos los sinonimos estan separados por simbolos de doble barra (es decir, <b><font face="Courier New">||</font></b>).
+	</li>
+	<li>
+	cada secuencia que contenga parametros (tamano de fuente, LPI, CPI, color, etc.) debe escribirse en la definicion de secuencia con ceros o un numero en los corchetes en la posicion del parametro.
+	<br>
+	<br>
+	-- Si se utiliza un cero, cualquier simbolo que el programa DOS coloque en la secuencia se interpretara como la vista de cadena ASCII del parametro. Por ejemplo, si una secuencia se definio como <b><font face="Courier New">[#27]X{0000}</font></b> y el programa DOS envio la cadena <b><font face="Courier New">[#27]X1234</font></b>, entonces DOSPRN decidira que el parametro es "1234".
+	<br>
+	<br>
+	-- Si se utiliza un cero con el signo mas, cualquier cantidad de simbolo numerico que el programa DOS coloque en secuencia se interpretara como la vista de cadena ASCII del parametro. Por ejemplo, si una secuencia se definio como <b><font face="Courier New">[#27]Y{0+}</font></b> y el programa DOS envio la cadena <b><font face="Courier New">[#27]Y123</font></b>, entonces DOSPRN decidira que el parametro es "123".
+	<br>
+	<br>
+	-- Si se utilizan signos numericos, cualquier simbolo que el programa DOS coloque en secuencia se interpretara como un codigo de este simbolo. Por ejemplo, si una secuencia se definio como <b><font face="Courier New">[#27]r{#}</font></b> y el programa DOS envio la cadena <b><font face="Courier New">[#27]r0</font></b>, entonces DOSPRN decidira que el parametro es "48" (ya que 48 es un codigo de simbolo ASCII '0')        
+	<br>
+	<br>
+	-- Si se usa un numero con el signo mas, cualquier cantidad de simbolos que el programa DOS coloque en secuencia se interpretara como un codigo de este simbolo. Por ejemplo, si una secuencia se definio como <b><font face="Courier New">[#27]t{#+}[#00]</font></b> y el programa DOS envio la cadena <b><font face="Courier New">[#27]t12[#00]</font></b>, entonces DOSPRN decidira que el parametro es "49" y "50" (dado que 49 es un codigo de simbolos ASCII '1' y 50 es un codigo de simbolos ASCII '2')
+	<br>
+	<br>
+	-- Si se usan dos puntos, cualquier cantidad de simbolos anteriores se interpretara como un prefijo de secuencias compuestas (PCL).
+	<br>
+	<br>
+	-- Si se utiliza un punto y coma, esto se interpretara como una prolongacion de secuencias compuestas (PCL).
+	</li>
+	</ul>
+	<p>
+</TD></TR>
+<TR>
+	<TD width="100%">
+	<H3><a name="1"></a>Secuencias predeterminadas</H3>
+	<p align="center"> <img border="0" src="images/seq-default.png" width="433" height="486" alt="dos print sequences default">
+	<div align="center">
+	<center>
+	<TABLE cellSpacing=1 cellpadding=5 width="100%" border=1>
+        
+	<TR>
+	<TD align="left">(Esc) OP</TD>
+	<TD align="left">
+	<p align="center">Seleccionar orientacion de la pagina Vertical</p></TD></TR>
+<TR>
+	<TD align="left">(Esc) OL</TD>
+	<TD align="left">Seleccionar orientacion de la pagina Horizontal</TD></TR>
+<TR>
+	<TD align="left">(Esc) P{00}</TD>
+	<TD align="left">Definir ancho de fuente (Caracteres por pulgada) en XX. Por defecto aceptado XX = 12</TD></TR>
+<TR>
+	<TD align="left">(Esc) L{00}</TD>
+	<TD align="left">Establecer la altura de la fuente (lineas por pulgada) en XX. Por defecto aceptado XX = 06</TD></TR>
+<TR>
+	<TD align="left">(Esc) C${000000}</TD>
+	<TD align="left">Establecer color de texto donde XXXXXX es la descripcion estandar de color RGB en hex</TD></TR>
+<tr>
+	<TD align="left">(Esc) F{00}</TD>
+	<TD align="left">Definir tamano de fuente en XX. Por defecto aceptado XX = 10</TD></tr>
+<TR>
+	<TD align="left">(Esc) X{0000}</TD>
+	<TD align="left">Fija la posicion horizontal absoluta en 1/720" unidades</TD></TR>
+<tr>
+	<TD align="left">(Esc) Y{0000}</TD>
+	<TD align="left">Fija la posicion vertical absoluta en 1/720" unidades</TD></tr>
+<TR>
+	<TD align="left">(Esc) B</TD>
+	<TD align="left">Poner estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD align="left">(Esc) b</TD>
+	<TD align="left">Quitar estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD align="left">(Esc) I</TD>
+	<TD align="left">Poner estilo de letra cursiva</TD></TR>
+<TR>
+	<TD align="left">(Esc) i</TD>
+	<TD align="left">Quitar estilo de letra cursiva</TD></TR>
+<TR>
+	<TD align="left">(Esc) U</TD>
+	<TD align="left">Poner estilo de letra subrayado</TD></TR>
+<TR>
+	<TD align="left">(Esc) u</TD>
+	<TD align="left">Quitar estilo de letra subrayado</TD></TR>
+<TR>
+	<TD align="left">(Esc) S</TD>
+	<TD align="left">Poner estilo de letra tachado</TD></TR>
+<TR>
+	<TD align="left">(Esc) s</TD>
+	<TD align="left">Quitar estilo de letra tachado</TD></TR>
+	
+	</TABLE>
+	</center>
+	</div>
+	<p>&nbsp;</TD></TR>
+<tr>
+	<TD width="100%">
+	<H3><a name="2"></a>Epson ESC-P2. Secuencias de emulacion.</H3>
+	<p align="center">
+	<img border="0" src="images/seq-epson.png" width="433" height="486" alt="dos print sequences epson compatible">
+	<TABLE cellSpacing=1 cellPadding=5 border=1 width="630" height="768">
+
+<TR>
+	<TD height="19">(Esc) E o (Esc) G</TD>
+	<TD height="19">Poner estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD height="19">(Esc) F o (Esc) H</TD>
+	<TD height="19">Quitar estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD height="19">(Esc) 4</TD>
+	<TD height="19">Poner estilo de letra cursiva</TD></TR>
+<TR>
+	<TD height="19">(Esc) 5</TD>
+	<TD height="19">Quitar estilo de letra cursiva</TD></TR>
+<TR>
+	<TD height="19">(Esc) -1 <i> or</i>&nbsp;(Esc) -#1</TD>
+	<TD height="19">Poner estilo de letra subrayado</TD></TR>
+<TR>
+	<TD height="19">(Esc) -0 <i> or</i>&nbsp;(Esc) -#0</TD>
+	<TD height="19">Quitar estilo de letra subrayado</TD></TR>
+<TR>
+	<TD height="19">(Esc) P</TD>
+	<TD height="19">Estilo de fuente Pica (10 cpi)</TD></TR>
+<TR>
+	<TD height="19">(Esc) M</TD>
+	<TD height="19">Estilo de fuente Elite (12 cpi)</TD></TR>
+<TR>
+	<TD height="19">#14 <i> or</i>&nbsp;(Esc) #14</TD>
+	<TD height="19">Ancho de fuente doble (<font SIZE="2">Hasta el final de una linea)</font></TD></TR>
+<TR>
+	<TD height="19">#20</TD>
+	<TD height="19">Ancho de fuente normal</TD></TR>
+<TR>
+	<TD height="19">(Esc) W1 <i>or</i> (Esc) W #1</TD>
+	<TD height="19">Ancho de fuente doble (<font SIZE="2">Hasta cancelacion especial)</font></TD></TR>
+<TR>
+	<TD height="19">(Esc) W0 <i>or</i> (Esc) W #0</TD>
+	<TD height="19">Cancelar ancho de fuente doble</TD></TR>
+<tr>
+	<TD height="19">(Esc) w1 <i>or</i> (Esc) w #1</TD>
+	<TD height="19">Alto de fuente doble (<font SIZE="2">Hasta cancelacion especial)</font></TD></tr>
+<tr>
+	<TD height="19">(Esc) w0 <i>or</i> (Esc) w #0</TD>
+	<TD height="19">Cancelar alto de fuente doble</TD></tr>
+<tr>
+	<TD height="19">(Esc) g_</TD>
+	<TD height="19">Seleccionar modo 15 CPI</TD></tr>
+<TR>
+	<TD height="19">#15 <i> or</i>&nbsp;(Esc) #15</TD>
+	<TD height="19">Fuentes condensadas</TD></TR>
+<TR>
+	<TD height="19">#18</TD>
+	<TD height="19">Fuentes No condensadas</TD></TR>
+<TR>
+	<TD height="67">(Esc) rx</TD>
+	<TD height="67">Establecer color de texto donde X es un codigo ASCII: <table border="0" width="100%" cellspacing="1" cellpadding="0">
+<tr>
+	<td width="25%">#0 - negro</td>
+	<td width="25%">#1 - magenta</td>
+	<td width="25%">#2 - cian</td>
+	<td width="25%">#3 - violeta</td></tr>
+<tr>
+	<td width="25%">#4 - amarillo</td>
+	<td width="25%">#5 - rojo</td>
+	<td width="25%">#6 - verde</td>
+	<td width="25%"></td></tr>
+	</table>
+	</TD></TR>
+<tr>
+	<TD height="19">(Esc) S0 <i> o</i>&nbsp; (Esc) S#0</TD>
+	<TD height="19">Poner modo de impresion de superindice</TD></tr>
+<TR>
+	<TD height="19">(Esc) S1 <i> o</i>&nbsp;(Esc) S#1</TD>
+	<TD height="19">Poner modo de impresion de subindice</TD></TR>
+<TR>
+	<TD height="19">(Esc) T</TD>
+	<TD height="19">Cancelar el modo de impresion de superindices o subindices</TD></TR>
+<TR>
+	<TD height="19">(Esc) B</TD>
+	<TD height="19">Poner tabulaciones verticales</TD></TR>
+<TR>
+	<TD height="19">#11</TD>
+	<TD height="19">Tabulacion vertical</TD></TR>
+<TR>
+	<TD height="19">(Esc) D</TD>
+	<TD height="19">Poner tabulaciones horizontales</TD></TR>
+<TR>
+	<TD height="13">#9</TD>
+	<TD height="13">Tabulacion horizontal</TD></TR>
+<TR>
+	<TD height="13">(Esc) K{##}</TD>
+	<TD height="13">Seleccionar graficos a 60 dpi </TD></TR>
+<TR>
+	<TD height="13">(Esc) L{##} <i>o </i>(Esc) Y{##}</TD>
+	<TD height="13">Seleccionar graficos a 120 dpi</TD></TR>
+<TR>
+	<TD height="13">(Esc) Z{##}</TD>
+	<TD height="13">Seleccionar graficos a 240 dpi</TD></TR>
+	</TABLE>
+	<p>&nbsp;</TD></tr>
+<TR>
+	<TD width="100%">
+	<h3>&nbsp;<a name="3"></a>HP PCL. Secuencias de emulacion.</h3>
+	<p align="center">
+	<img border="0" src="images/seq-pcl.png" width="433" height="486" alt="dos print sequences epson compatible">
+	<TABLE cellSpacing=1 cellPadding=5 border=1 width="630">
+
+<TR>
+	<TD>(Esc) (s3B or&nbsp;(Esc) (s1B</TD>
+	<TD>Poner estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD>(Esc) (s0B</TD>
+	<TD>Quitar estilo de fuente en negrita</TD></TR>
+<TR>
+	<TD>(Esc) (s1S</TD>
+	<TD>Poner estilo de letra cursiva</TD></TR>
+<TR>
+	<TD>(Esc) (s0S</TD>
+	<TD>Quitar estilo de letra cursiva</TD></TR>
+<TR>
+	<TD>(Esc) &amp;d1D</TD>
+	<TD>Poner estilo de letra subrayado</TD></TR>
+<TR>
+	<TD>(Esc) &amp;d@</TD>
+	<TD>Quitar estilo de letra subrayado</TD></TR>
+<tr>
+	<TD>(Esc) (s1U</TD>
+	<TD>Poner modo de impresion de superindice</TD></tr>
+<TR>
+	<TD>(Esc) (s-1U</TD>
+	<TD>Poner modo de impresion de subindice</TD></TR>
+<TR>
+	<TD>(Esc) (s0U</TD>
+	<TD>Cancelar el modo de impresion de superindices o subindices</TD></TR>
+<tr>
+	<TD align="left">(Esc) (s{0+}H</TD>
+	<TD align="left">Poner ancho de fuente (caracteres por pulgada) en XX. Por defecto aceptado XX = 12</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;l{0+}D</TD>
+	<TD align="left">Poner altura de fuente (lineas por pulgada) en XX. Por defecto aceptado XX = 06</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;a{0+}H</TD>
+	<TD align="left">Poner la posicion horizontal absoluta en unidades de 1/720"</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;a(0+}V</TD>
+	<TD align="left">Poner la posicion vertical absoluta en unidades de 1/720"</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;l{0+}E</TD>
+	<TD align="left">Margen superior (lineas)</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;l{0+}F</TD>
+	<TD align="left">Longitud del texto (lineas)</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;a{0+}L</TD>
+	<TD align="left">Margen izquierdo (columnas)</TD></tr>
+<tr>
+	<TD align="left">(Esc) &amp;a{0+}M</TD>
+	<TD align="left">Margen derecho (columnas)</TD></tr>
+	
+	</TABLE>
+      <p></p></TD></TR>
+<TR>
+	<TD align=middle width="100%" style="line-height:1.5">
+	<HR><font size="+1">
+	<A href="dos-print.htm">Acerca de</A> &nbsp;||&nbsp; <A 
+      href="readme.htm">Manual</A> &nbsp;||&nbsp; <A href="news.htm">Novedades</A> &nbsp;||&nbsp; <A 
+      href="download.htm">Descargas</A> &nbsp;||&nbsp; <A href="vox.htm">Vox populi</A> &nbsp;||&nbsp; <A href="order.htm">Comprar</A> &nbsp;||&nbsp; <A
+      href="faq.htm">FAQ</A> &nbsp;||&nbsp; <A href="story.htm">Historia</A> &nbsp;||&nbsp; <A href="mailto:support&#064dosprn.com?Subject=DOSPRN&#032support">
+      Soporte</A> &nbsp;||&nbsp; <A href="login.htm">Login</A>
+	</FONT>
+	<HR>
+	</TD></TR></TABLE></CENTER></DIV>
+
+
+<!--WEBSITECEO:BEGIN:{764EEF2E-BC11-45CF-8627-300CE1BA2219}-->
+<!--
+Do NOT modify this script to avoid traffic misrepresentation! 
+Web CEO 4 0300/1
+Code initially inserted into: "/sequences.htm".
+-->
+<script type="text/javascript"><!--
+// hitlens v1.2.7
+function hitlens_embedded() {
+var id = 5192;
+var pc = 103;
+var PAGENAME = escape('');
+var CONTENTGROUP = escape('');
+var TRANSACTION = escape('');
+var TRANSACTION_ID = 0;
+var ORDER = escape('');
+return "id="+id+"&pc="+pc+"&p="+PAGENAME+"&gr="+CONTENTGROUP+"&tr="+TRANSACTION+"&trid="+TRANSACTION_ID+"&ord="+ORDER;
+}
+//--></script>
+<script type="text/javascript" src="/webceo.js"></script>
+<!--WEBSITECEO:END:{764EEF2E-BC11-45CF-8627-300CE1BA2219}-->
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1591434-1";
+urchinTracker();
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39647417-1', 'dosprn.com');
+  ga('send', 'pageview');
+
+</script>
+</body></HTML>
