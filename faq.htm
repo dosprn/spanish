@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>DOSPRN 1.85 FAQ page</TITLE>
+<HTML><HEAD><TITLE>DOSPRN 1.86 FAQ page</TITLE>
 <META http-equiv=Content-Language content=en-us>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META name=Description content="Answers on frequently asked questions about DOSPRN and dos printer">
@@ -12,7 +12,7 @@
 <TABLE cellSpacing=0 cellPadding=6 width=50% style="max-width:640px" border=0>
   <TR>
     <TD width=100%>
-      <div style="float:left"><IMG src="images/logo.gif" ALT="DOS USB print under Windows 8, Windows 7, Windows XP, Windows2000, Windows98"> <font size="5"><b>&nbsp;DOSPRN&nbsp;1.85&nbsp;</b></font></div>
+      <div style="float:left"><IMG src="images/logo.gif" ALT="DOS USB print under Windows 8, Windows 7, Windows XP, Windows2000, Windows98"> <font size="5"><b>&nbsp;DOSPRN&nbsp;1.86&nbsp;</b></font></div>
   
       <table border="2" bgcolor="#C0C0C0" cellpadding="4" cellspacing="4">
         <tr>
@@ -227,9 +227,7 @@ Sí, DOSPRN es totalmente compatible con el emulador vDOS. Para imprimir informe
 LPT1 = "%ProgramFiles%\DOSPRN\DOSprn.exe" #lpt1.asc<br>
 ............<br>
 </code></p>
-<!--
-b) Open DOSPRN window and make sure 'Spool filename (filemask)' field contains default value (%userprofile%\prnspl1).
--->
+
           </p>
 
         </li><li>
@@ -242,7 +240,7 @@ Creo que tienes el sistema operativo Windows NT/2000/XP/Vista/7/8/10. Estos sist
           <br>
 DOSPRN (es decir, el controlador dos <i><b>PRN2FILE</b></i>) no puede capturar la salida del kernel Win32 ya que no puede redirigir los comandos COPY y PRINT.<br>
           <br>
-Si desea imprimir archivos TXT puros, le recomiendo que los imprima con el comando <p><code>copy filename %USERPROFILE%\prnspl1</code></p> En este caso, su archivo llegará directamente al búfer de spool DOSPRN y será procesado inmediatamente.
+Si desea imprimir archivos TXT puros, le recomiendo que los imprima con el comando <p><code>copy filename &quot;%USERPROFILE%\prnspl1&quot;</code></p> En este caso, su archivo llegará directamente al búfer de spool DOSPRN y será procesado inmediatamente.
           </p>
       </ul>
         </li>
