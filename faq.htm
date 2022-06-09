@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML><HEAD><TITLE>DOSPRN 1.88 FAQ page</TITLE>
+<HTML><HEAD><TITLE>DOSPRN 1.89 FAQ page</TITLE>
 <META http-equiv=Content-Language content=en-us>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <META name=Description content="Answers on frequently asked questions about DOSPRN and dos printer">
@@ -20,7 +20,7 @@
 <TABLE cellSpacing=0 cellPadding=6 width=50% style="max-width:640px" border=0>
   <TR>
     <TD width=100%>
-      <div style="float:left"><IMG src="images/logo.gif" ALT="DOS USB print under Windows 8, Windows 7, Windows XP, Windows2000, Windows98"> <font size="5"><b>&nbsp;DOSPRN&nbsp;1.88&nbsp;</b></font></div>
+      <div style="float:left"><IMG src="images/logo.gif" ALT="DOS USB print under Windows 8, Windows 7, Windows XP, Windows2000, Windows98"> <font size="5"><b>&nbsp;DOSPRN&nbsp;1.89&nbsp;</b></font></div>
   
       <table border="2" bgcolor="#C0C0C0" cellpadding="4" cellspacing="4">
         <tr>
@@ -80,8 +80,7 @@
         </li><li>
           <h4><a href="#26">¿DOSPRN es compatible con el emulador vDOS de DOS?</a>
           </h4>
-        </li><li>
-          <h4><a href="#18">He probado DOSPRN tratando de imprimir archivos con el comando Copiar nombre de archivo PRN DOS. He llegado a una conclusión DOSPRN no puede procesar comandos DOS simples. </a><a href="#18">¿Alguna sugerencia, por favor?</a></h4>
+        </li>
       </ul>          
         </li>          
         <li>
@@ -238,18 +237,7 @@ LPT1 = "%ProgramFiles%\DOSPRN\DOSprn.exe" #lpt1.asc<br>
 
           </p>
 
-        </li><li>
-          <p><a name="18"></a><b>He probado DOSPRN tratando de imprimir archivos con el comando DOS "copy filename prn" DOS. He llegado a una conclusión DOSPRN no puede procesar comandos DOS simples. ¿Alguna sugerencia, por favor?<br>
-          <br>
-          </b>
-Creo que tienes el sistema operativo Windows NT/2000/XP/Vista/7/8/10. Estos sistemas operativos no tienen DOS puro. El cuadro de DOS no es DOS y los comandos de consola NT/2000/XP/Vista/7/8/10 no son comandos de DOS.<br>
-          <br>
-          Por ejemplo, NT / 2000 / XP / Vista / 7/8/10 usa un comando "copy" desde su núcleo de 32 bits. Otro comando estándar para la impresión de archivos (el comando <b>PRINT</b>) no es un programa DOS habitual. Este es un programa de consola Win32 nativo (puede encontrarlo en el directorio SYSTEM32, abrirlo con cualquier visor hexadecimal y convencerse).<br>
-          <br>
-DOSPRN (es decir, el controlador dos <i><b>PRN2FILE</b></i>) no puede capturar la salida del kernel Win32 ya que no puede redirigir los comandos COPY y PRINT.<br>
-          <br>
-Si desea imprimir archivos TXT puros, le recomiendo que los imprima con el comando <p><code>copy filename &quot;%USERPROFILE%\prnspl1&quot;</code></p> En este caso, su archivo llegará directamente al búfer de spool DOSPRN y será procesado inmediatamente.
-          </p>
+        </li>
       </ul>
         </li>
         <li>
